@@ -1,1 +1,75 @@
-<p>create works!</p>
+<div class="create-task-container">
+  <h2>Create New Task</h2>
+  
+  <form (ngSubmit)="createTask()" #taskForm="ngForm" class="task-form">
+    <div class="form-group">
+      <label for="title">Task Title *</label>
+      <input 
+        type="text" 
+        id="title" 
+        name="title"
+        [(ngModel)]="newTask.title" 
+        required 
+        placeholder="Enter task title"
+        class="form-control"
+        #title="ngModel">
+      <div class="error-message" *ngIf="title.invalid && title.touched">
+        Task title is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea 
+        id="description" 
+        name="description"
+        [(ngModel)]="newTask.description" 
+        placeholder="Enter task description"
+        class="form-control"
+        rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="dueDate">Due Date *</label>
+      <input 
+        type="date" 
+        id="dueDate" 
+        name="dueDate"
+        [(ngModel)]="newTask.dueDate" 
+        required 
+        class="form-control"
+        #dueDate="ngModel">
+      <div class="error-message" *ngIf="dueDate.invalid && dueDate.touched">
+        Due date is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <select 
+        id="priority" 
+        name="priority"
+        [(ngModel)]="newTask.priority" 
+        class="form-control">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="taskForm.invalid">
+        Create Task
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        (click)="resetForm()">
+        Reset
+      </button>
+    </div>
+  </form>
+</div>

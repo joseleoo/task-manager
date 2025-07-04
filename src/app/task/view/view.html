@@ -1,0 +1,58 @@
+<div class="task-viewer-container">
+  <div class="header">
+    <h2>Lista de Tareas</h2>
+    <a routerLink="/tasks/create" class="btn btn-primary">
+      <span class="icon">+</span>
+      Nueva Tarea
+    </a>
+  </div>
+
+  <div class="tasks-container" *ngIf="tasks.length > 0; else noTasks">
+    <div class="task-card" *ngFor="let task of tasks" [class]="getPriorityClass(task.priority)">
+      <div class="task-header">
+        <h3 class="task-title">{{ task.title }}</h3>
+        <div class="task-priority">
+          <span class="priority-badge" [class]="getPriorityClass(task.priority)">
+            {{ task.priority === 'high' ? 'Alta' : task.priority === 'medium' ? 'Media' : 'Baja' }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="task-body">
+        <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+        <div class="task-meta">
+          <div class="due-date">
+            <span class="label">Fecha límite:</span>
+            <span class="date">{{ formatDate(task.dueDate) }}</span>
+          </div>
+          <div class="task-id">
+            <span class="label">ID:</span>
+            <span>{{ task.id }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="task-actions">
+        <button class="btn btn-edit" title="Editar tarea">
+          <span class="icon">✏️</span>
+          Editar
+        </button>
+        <button class="btn btn-delete" (click)="deleteTask(task.id)" title="Eliminar tarea">
+          <span class="icon">🗑️</span>
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noTasks>
+    <div class="no-tasks">
+      <div class="no-tasks-icon">📝</div>
+      <h3>No hay tareas creadas</h3>
+      <p>¡Comienza creando tu primera tarea!</p>
+      <a routerLink="/tasks/create" class="btn btn-primary">
+        Crear Primera Tarea
+      </a>
+    </div>
+  </ng-template>
+</div>
