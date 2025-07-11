@@ -1,0 +1,61 @@
+<!-- filepath: d:\Source\Repos\task-manager\src\app\shared\components\navigation\navigation.component.html -->
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Brand/Logo -->
+    <div class="nav-brand">
+      <a routerLink="/" class="brand-link">
+        <span class="brand-icon">📋</span>
+        <span class="brand-text">Task Manager</span>
+      </a>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a 
+        routerLink="/tasks" 
+        routerLinkActive="active"
+        class="nav-link"
+        [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon">👁️</span>
+        <span class="nav-text">Ver Tareas</span>
+      </a>
+      
+      <a 
+        routerLink="/tasks/create" 
+        routerLinkActive="active"
+        class="nav-link"
+        [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon">➕</span>
+        <span class="nav-text">Crear Tarea</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.active]="isMobileMenuOpen">
+    <a 
+      routerLink="/tasks" 
+      routerLinkActive="active"
+      class="mobile-link"
+      (click)="closeMobileMenu()">
+      <span class="nav-icon">👁️</span>
+      Ver Tareas
+    </a>
+    
+    <a 
+      routerLink="/tasks/create" 
+      routerLinkActive="active"
+      class="mobile-link"
+      (click)="closeMobileMenu()">
+      <span class="nav-icon">➕</span>
+      Crear Tarea
+    </a>
+  </div>
+</nav>
