@@ -33,7 +33,7 @@
       </div>
       
       <div class="task-actions">
-        <button class="btn btn-edit" title="Editar tarea">
+        <button class="btn btn-edit" [routerLink]="['/tasks/edit', task.id]" title="Editar tarea">
           <span class="icon">✏️</span>
           Editar
         </button>

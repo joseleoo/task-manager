@@ -1,0 +1,121 @@
+<div class="update-task-container">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Cargando tarea...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" class="error-state">
+    <div class="error-icon">⚠️</div>
+    <h3>Error</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-secondary" (click)="cancelEdit()">
+      Volver a Tareas
+    </button>
+  </div>
+
+  <!-- Edit Form -->
+  <div *ngIf="!isLoading && !errorMessage" class="edit-form-container">
+    <div class="header">
+      <h2>Editar Tarea #{{ taskId }}</h2>
+      <button class="btn btn-secondary" (click)="cancelEdit()">
+        ← Volver
+      </button>
+    </div>
+    
+    <form (ngSubmit)="updateTask()" #taskForm="ngForm" class="task-form">
+      <!-- Title Field -->
+      <div class="form-group">
+        <label for="title">Título de la Tarea *</label>
+        <input 
+          type="text" 
+          id="title" 
+          name="title"
+          [(ngModel)]="task.title" 
+          required 
+          placeholder="Ingresa el título de la tarea"
+          class="form-control"
+          #title="ngModel">
+        <div class="error-message" *ngIf="title.invalid && title.touched">
+          El título es requerido
+        </div>
+      </div>
+
+      <!-- Description Field -->
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <textarea 
+          id="description" 
+          name="description"
+          [(ngModel)]="task.description" 
+          placeholder="Descripción detallada de la tarea (opcional)"
+          class="form-control"
+          rows="4"></textarea>
+      </div>
+
+      <!-- Due Date Field -->
+      <div class="form-group">
+        <label for="dueDate">Fecha Límite *</label>
+        <input 
+          type="date" 
+          id="dueDate" 
+          name="dueDate"
+          [(ngModel)]="task.dueDate" 
+          required 
+          class="form-control"
+          #dueDate="ngModel">
+        <div class="error-message" *ngIf="dueDate.invalid && dueDate.touched">
+          La fecha límite es requerida
+        </div>
+
+      </div>
+
+      <!-- Priority Field -->
+      <div class="form-group">
+        <label for="priority">Prioridad *</label>
+        <select 
+          id="priority" 
+          name="priority"
+          [(ngModel)]="task.priority" 
+          required 
+          class="form-control"
+          #priority="ngModel">
+          <option value="low">Baja</option>
+          <option value="medium">Media</option>
+          <option value="high">Alta</option>
+        </select>
+        <div class="error-message" *ngIf="priority.invalid && priority.touched">
+          La prioridad es requerida
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="taskForm.invalid">
+          <span class="icon">💾</span>
+          Guardar Cambios
+        </button>
+        
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="resetForm()">
+          <span class="icon">↻</span>
+          Restablecer
+        </button>
+        
+        <button 
+          type="button" 
+          class="btn btn-cancel"
+          (click)="cancelEdit()">
+          <span class="icon">✕</span>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
