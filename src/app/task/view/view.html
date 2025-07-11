@@ -8,11 +8,11 @@
   </div>
 
   <div class="tasks-container" *ngIf="tasks.length > 0; else noTasks">
-    <div class="task-card" *ngFor="let task of tasks" [class]="getPriorityClass(task.priority)">
+    <div class="task-card" *ngFor="let task of tasks" [class]="getPriorityClass(task.priority || 'low')">
       <div class="task-header">
         <h3 class="task-title">{{ task.title }}</h3>
         <div class="task-priority">
-          <span class="priority-badge" [class]="getPriorityClass(task.priority)">
+          <span class="priority-badge" [class]="getPriorityClass(task.priority || 'low')">
             {{ task.priority === 'high' ? 'Alta' : task.priority === 'medium' ? 'Media' : 'Baja' }}
           </span>
         </div>

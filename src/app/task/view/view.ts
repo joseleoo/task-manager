@@ -11,6 +11,10 @@ import { TaskService } from '../../core/services/task';
   styleUrl: './view.css'
 })
 export class View implements OnInit {
+  /**
+   * An array containing the list of tasks to be managed or displayed.
+   * Each element in the array is of type {@link Task}.
+   */
   tasks: Task[] = [];
 
   constructor(private taskService: TaskService) {}

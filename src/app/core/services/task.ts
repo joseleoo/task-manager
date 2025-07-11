@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../models/task.model';
+import { SEED_TASKS } from '../data/seed-data';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,13 @@ import { Task } from '../models/task.model';
 export class TaskService {
   private tasks: Task[] = [];
 
-  constructor() { }
+  constructor() {
+    this.initializeSeedData();
+  }
+
+  private initializeSeedData(): void {
+    this.tasks = [...SEED_TASKS];
+  }
 
   addTask(task: Task): void {
     // Generate a unique ID for the new task
@@ -32,5 +39,15 @@ export class TaskService {
 
   deleteTask(id: number): void {
     this.tasks = this.tasks.filter(task => task.id !== id);
+  }
+
+  // Optional: Method to reset to seed data
+  resetToSeedData(): void {
+    this.initializeSeedData();
+  }
+
+  // Optional: Method to clear all data
+  clearAllTasks(): void {
+    this.tasks = [];
   }
 }
