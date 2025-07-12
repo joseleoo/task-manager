@@ -37,7 +37,7 @@
           <span class="icon">✏️</span>
           Editar
         </button>
-        <button class="btn btn-delete" (click)="deleteTask(task.id)" title="Eliminar tarea">
+        <button class="btn btn-delete" [routerLink]="['/tasks/delete', task.id]" title="Eliminar tarea">
           <span class="icon">🗑️</span>
           Eliminar
         </button>

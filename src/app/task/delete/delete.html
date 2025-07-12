@@ -1,0 +1,76 @@
+<div class="delete-task-container">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Cargando tarea...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" class="error-state">
+    <div class="error-icon">⚠️</div>
+    <h3>Error</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-secondary" (click)="cancelDelete()">
+      Volver a Tareas
+    </button>
+  </div>
+
+  <!-- Delete Confirmation -->
+  <div *ngIf="task && !isLoading && !errorMessage" class="delete-confirmation">
+    <div class="warning-header">
+      <div class="warning-icon">🗑️</div>
+      <h2>Confirmar Eliminación</h2>
+    </div>
+
+    <div class="warning-message">
+      <p><strong>¿Estás seguro de que quieres eliminar esta tarea?</strong></p>
+      <p class="warning-text">Esta acción no se puede deshacer.</p>
+    </div>
+
+    <!-- Task Preview -->
+    <div class="task-preview" [class]="getPriorityClass(task.priority)">
+      <div class="task-header">
+        <h3 class="task-title">{{ task.title }}</h3>
+        <div class="task-priority">
+          <span class="priority-badge" [class]="getPriorityClass(task.priority)">
+            {{ task.priority === 'high' ? 'Alta' : task.priority === 'medium' ? 'Media' : 'Baja' }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="task-body">
+        <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+        <div class="task-meta">
+          <div class="due-date">
+            <span class="label">Fecha límite:</span>
+            <span class="date">{{ formatDate(task.dueDate) }}</span>
+          </div>
+          <div class="task-id">
+            <span class="label">ID:</span>
+            <span>{{ task.id }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button 
+        class="btn btn-danger"
+        (click)="confirmDelete()"
+        [disabled]="isDeleting">
+        <span class="icon" *ngIf="!isDeleting">🗑️</span>
+        <div class="mini-spinner" *ngIf="isDeleting"></div>
+        {{ isDeleting ? 'Eliminando...' : 'Sí, Eliminar Tarea' }}
+      </button>
+      
+      <button 
+        class="btn btn-secondary"
+        (click)="cancelDelete()"
+        [disabled]="isDeleting">
+        <span class="icon">✕</span>
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

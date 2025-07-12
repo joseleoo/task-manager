@@ -47,7 +47,19 @@ export class View implements OnInit {
     }
   }
 
-  formatDate(date: Date): string {
-    return new Date(date).toLocaleDateString('es-ES');
+  formatDate(date: Date | string): string {
+    // Handle both Date objects and date strings
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+
+    // Check if the date is valid
+    if (isNaN(dateObj.getTime())) {
+      return 'Fecha inválida';
+    }
+
+    return dateObj.toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
   }
 }
