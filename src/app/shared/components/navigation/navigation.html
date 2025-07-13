@@ -28,6 +28,15 @@
         <span class="nav-icon">➕</span>
         <span class="nav-text">Crear Tarea</span>
       </a>
+
+      <a 
+        routerLink="/lessons/signals" 
+        routerLinkActive="active"
+        class="nav-link"
+        [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon">🔢</span>
+        <span class="nav-text">Counter</span>
+      </a>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -56,6 +65,15 @@
       (click)="closeMobileMenu()">
       <span class="nav-icon">➕</span>
       Crear Tarea
+    </a>
+
+    <a 
+      routerLink="/lessons/signals" 
+      routerLinkActive="active"
+      class="mobile-link"
+      (click)="closeMobileMenu()">
+      <span class="nav-icon">🔢</span>
+      Counter
     </a>
   </div>
 </nav>
