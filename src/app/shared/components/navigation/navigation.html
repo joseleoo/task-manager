@@ -37,6 +37,15 @@
         <span class="nav-icon">🔢</span>
         <span class="nav-text">Counter</span>
       </a>
+
+      <a 
+        routerLink="/lessons/input-output" 
+        routerLinkActive="active"
+        class="nav-link"
+        [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon">🔄</span>
+        <span class="nav-text">Input/Output</span>
+      </a>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -74,6 +83,15 @@
       (click)="closeMobileMenu()">
       <span class="nav-icon">🔢</span>
       Counter
+    </a>
+
+    <a 
+      routerLink="/lessons/input-output" 
+      routerLinkActive="active"
+      class="mobile-link"
+      (click)="closeMobileMenu()">
+      <span class="nav-icon">🔄</span>
+      Input/Output
     </a>
   </div>
 </nav>
