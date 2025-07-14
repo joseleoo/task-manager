@@ -1,0 +1,23 @@
+/* Add this to parent.css */
+.clear-section {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.btn-clear {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+.btn-clear:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.btn-clear:active {
+  transform: translateY(0);
+}

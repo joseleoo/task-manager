@@ -1,4 +1,46 @@
-<p>parent works!</p>
-<h2>🧑 Parent Component</h2>
-    <button (click)="sendMessage()">Send Message</button>
-    <app-child [message]="parentMessage"></app-child>
+<div class="input-output-container">
+  <div class="component-header">
+    <h2>🧑 Parent Component</h2>
+    <p class="component-description">Demonstrates &#64;Input and &#64;Output communication</p>
+  </div>
+
+  <div class="parent-controls">
+    <div class="control-section">
+      <h3>Send Data to Child</h3>
+      <button class="btn btn-primary" (click)="sendMessage()">
+        <span class="icon">📤</span>
+        Send Message
+      </button>
+      <small class="help-text">Uses &#64;Input() property binding</small>
+    </div>
+
+    <div class="message-section">
+      <h3>Receive Data from Child</h3>
+      <div class="message-display">
+        <label class="message-label">📥 Message received:</label>
+        <div class="message-box" [class.has-content]="message">
+          {{ message || 'Waiting for child message...' }}
+        </div>
+      </div>
+      <small class="help-text">Uses &#64;Output() event emitter</small>
+    </div>
+  </div>
+
+  <!-- Clear Messages Button -->
+  <div class="clear-section">
+    <button class="btn btn-clear" (click)="clearMessages()">
+      <span class="icon">🧹</span>
+      Clear All Messages
+    </button>
+  </div>
+
+  <div class="child-component-wrapper">
+    <h3>👶 Child Component</h3>
+    <div class="child-container">
+      <app-child 
+        [message]="parentMessage" 
+        (sendMessage)="handleMessage($event)">
+      </app-child>
+    </div>
+  </div>
+</div>
