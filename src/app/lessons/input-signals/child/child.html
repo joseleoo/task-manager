@@ -1,19 +1,18 @@
-<p>📩 Message from parent: {{ message() }}</p>
-<button (click)="send()">📤 Send Message to Parent</button>
-
 <!-- Add this to child.html if you want a clear button in the child component too -->
 <div class="child-controls">
-  <button class="btn btn-primary" (click)="send()">
-    <span class="icon">📤</span>
-    Send to Parent
-  </button>
-  
-  <button class="btn btn-secondary" (click)="clearChild()">
-    <span class="icon">🧹</span>
-    Clear
-  </button>
+    <button class="btn btn-primary" (click)="send()">
+        <span class="icon">📤</span>
+        Send Message to Parent
+    </button>
+
+    <button class="btn btn-secondary" (click)="clearChild()">
+        <span class="icon">🧹</span>
+        Clear
+    </button>
 </div>
 
-<div class="child-message" *ngIf="message">
-  <p>📩 Received from parent: {{ message }}</p>
+@if (message()) {
+<div class="child-message">
+    <p>📩 Received from parent: {{ message() }}</p>
 </div>
+}

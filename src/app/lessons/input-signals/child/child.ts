@@ -1,4 +1,4 @@
-import { Component, input, EventEmitter, Output } from '@angular/core';
+import { Component, input, EventEmitter, Output, output } from '@angular/core';
 
 @Component({
   selector: 'app-child',
@@ -8,7 +8,9 @@ import { Component, input, EventEmitter, Output } from '@angular/core';
 })
 export class Child {
   message = input('');
-  @Output() sendMessage = new EventEmitter<string>();
+  // @Output() sendMessage = new EventEmitter<string>();
+
+  sendMessage = output<string>();
 
   send() {
     this.sendMessage.emit('Hello from Child!');
@@ -18,3 +20,6 @@ export class Child {
     this.sendMessage.emit('');
   }
 }
+
+// ➡️ No need for EventEmitter or @Output()
+// ➡️ Use .emit() like before, but it's a signal event now.
